@@ -13,4 +13,4 @@ def post_by_category(request,category_id):
         'posts':posts,
         'category':category
     }
-    return render(request,'post_by_category.html',context)   
+    return render(request,'posts_by_category.html',context)   

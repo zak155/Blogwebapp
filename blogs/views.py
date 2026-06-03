@@ -1,14 +1,15 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 
 from blogs.models import Blog,Category
 
 # Create your views here.
 def post_by_category(request,category_id):
     posts=Blog.objects.filter(status='Published',category=category_id)
-    try:
-        category=Category.objects.get(pk=category_id)
-    except Category.DoesNotExist:
-        return redirect('home') 
+    #try:
+        #category=Category.objects.get(pk=category_id)
+    #except Category.DoesNotExist:
+        #return redirect('home') 
+    category=get_object_or_404(Category,pk=category_id)    
     context={
         'posts':posts,
         'category':category

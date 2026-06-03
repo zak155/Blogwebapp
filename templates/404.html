@@ -1,1 +1,50 @@
-<p>The category does not exist.</p>
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="glow-bg">
+        <div class="glow-orb"></div>
+    </div>
+
+    <main class="split-container">
+        
+        <section class="left-hero-card">
+            <div class="card-inner-glow"></div>
+            <div class="card-content">
+                <span class="status-badge">SYSTEM ERROR</span>
+                <h1 class="giant-code">404</h1>
+                <div class="accent-line"></div>
+                <p class="card-tagline">Requested node unavailable.</p>
+            </div>
+        </section>
+
+        <section class="right-details-panel">
+            <div class="panel-content">
+                <div class="context-header">
+                    <span class="category-tag">NAVIGATION RE-ROUTE</span>
+                </div>
+                
+                <h2 class="main-title">Category Lost or Removed</h2>
+                
+                <p class="error-description">The category does not exist.</p>
+
+                <p class="supporting-text">
+                    The section you are looking for might have been archived, renamed, or is temporarily offline for maintenance updates. Please check the URL or use the dashboard actions below.
+                </p>
+
+                <div class="action-row">
+                    <a href="#" class="btn btn-primary">Return to Safety</a>
+                    <a href="#" class="btn btn-secondary">System Status</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

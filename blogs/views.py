@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render,get_object_or_404
 
 from blogs.models import Blog,Category
 from django.db.models import Q
+from django.contrib.auth.forms import AuthenticationForm
+
 
 # Create your views here.
 def post_by_category(request,category_id):
@@ -30,3 +32,4 @@ def search(request):
         'blogs':blogse
     }
     return render(request,'search.html',context)
+   

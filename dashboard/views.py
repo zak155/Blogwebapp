@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from blogs.models import Blog, Category
 from .forms import BlogPostForm, CategoryForm
+from django.template.defaultfilters import slugify
 
 login_required(login_url='login')
 def dashboard(request):
@@ -56,9 +57,30 @@ def add_post(request):
             post=form.save(commit=False)
             post.author=request.user
             post.save()
+            title=form.cleaned_data['title']
+            post.slug=slugify(title) + '-' +str(post.id)
+            post.save()
             return redirect('posts')
         
     else:
         form=BlogPostForm()
     return render(request,'dashboard/add_post.html', {'form': form})
-   
+
+def edit_post(request,id):
+    post=get_object_or_404(Blog, id=id)
+    if request.method=='POST':
+        form=BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save(commit=False)
+            title=form.cleaned_data['title']
+            post.slug=slugify(title) + '-' +str(post.id)
+            return redirect('posts')
+    else:
+        form=BlogPostForm(instance=form)
+    return render(request,'dashboard/edit_post.html', {'form': form})
+
+def delete_post(request,id):
+    post=get_object_or_404(Blog, id=id)
+    if request.method=='POST':
+        post.delete()
+        return redirect('posts')    
